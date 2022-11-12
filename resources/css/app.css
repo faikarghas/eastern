@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+input{
+    box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  vertical-align:top;
+}
+
+
+.wrapper * {
+box-sizing: border-box;
+}
+.myInput {
+height: 100%;
+border: 1px solid grey;
+border-right: none;
+}
+.myInputAddon {
+height: 100%;
+background-color: #EE4C21;
+border: 1px solid #EE4C21;
+}
