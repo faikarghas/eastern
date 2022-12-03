@@ -2,7 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\AboutController;
+use App\Http\Controllers\Web\ServicesController;
+use App\Http\Controllers\Web\CareerController;
+use App\Http\Controllers\Web\NewsController;
+use App\Http\Controllers\Web\ContactController;
+
 use App\Http\Controllers\Web\GoogleLoginController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,28 +23,17 @@ use App\Http\Controllers\Web\GoogleLoginController;
 */
 
 Route::get('/',[HomeController::class,'index'])->name('home');
-Route::get('/upd',[HomeController::class,'update_t'])->name('upd');
+Route::get('/about',[AboutController::class,'index'])->name('home');
+Route::get('/services',[ServicesController::class,'index'])->name('services');
+Route::get('/career',[CareerController::class,'index'])->name('career');
+Route::get('/news',[NewsController::class,'index'])->name('news');
+Route::get('/news/{slug}',[NewsController::class,'show'])->name('news-detail');
+Route::get('/contact',[ContactController::class,'index'])->name('contact');
+
 
 
 Route::group(['middleware' => ['guest']], function() {
-    // /**
-    //  * Register Routes
-    //  */
-    // Route::get('/register', 'RegisterController@show')->name('register.show');
-    // Route::post('/register', 'RegisterController@register')->name('register.perform');
-
-    // /**
-    //  * Login Routes
-    //  */
-    // Route::get('/login', 'LoginController@show')->name('login.show');
-    // Route::post('/login', 'LoginController@login')->name('login.perform');
-
-     /* Google Social Login */
-    Route::get('/login/google', [GoogleLoginController::class,'redirect'])->name('login.google-redirect');
-    Route::get('/login/google/callback', [GoogleLoginController::class,'callback'])->name('login.google-callback');
 
 });
 
 
-Route::post('/guess-score/{id_match}',[HomeController::class,'storeOrUpdateScore'])->name('sous');
-Route::get('/guess/{id_match}',[HomeController::class,'guess'])->name('gs');

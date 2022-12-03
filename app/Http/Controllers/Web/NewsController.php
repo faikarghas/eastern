@@ -13,7 +13,7 @@ use App\Lib\UpdatePointHelper;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,20 +22,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        $port = DB::table('port')->get();
-        $services = DB::table('services')->get();
         $news = DB::table('news')
-        ->where([['status',1],['promo',1]])
+        ->where('status',1)
         ->get();
 
         $data = [
-            'port' => $port,
-            'services' => $services,
             'news' => $news
         ];
 
-        return view('web.pages.index',$data);
+        return view('web.pages.news',$data);
     }
 
     /**
@@ -65,9 +60,17 @@ class HomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $news = DB::table('news')
+        ->where('status',1)
+        ->get();
+
+        $data = [
+            'news' => $news
+        ];
+
+        return view('web.pages.news-detail',$data);
     }
 
     /**
